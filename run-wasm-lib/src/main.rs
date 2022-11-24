@@ -2,6 +2,7 @@ use wasmedge_sdk::{
     error::HostFuncError, host_function, params, Caller, ImportObjectBuilder, Vm, WasmValue,
 };
 
+// https://github.com/WasmEdge/WasmEdge/blob/master/lib/host/wasi/wasimodule.cpp#L12
 // fd_write: FuncType {params{i32 , i32 , i32 , i32} returns{i32}}
 #[host_function]
 fn my_fd_write(_caller: Caller, _args: Vec<WasmValue>) -> Result<Vec<WasmValue>, HostFuncError> {
