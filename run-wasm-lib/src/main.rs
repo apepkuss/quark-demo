@@ -12,6 +12,11 @@ fn my_fd_write(_caller: Caller, _args: Vec<WasmValue>) -> Result<Vec<WasmValue>,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let args: Vec<String> = std::env::args().collect();
+    println!("args: {:?}", args);
+
+    let wasm_file = &args[1];
+
     let import = ImportObjectBuilder::new()
         .with_func::<(), ()>("fd_write", my_fd_write)?
         .build("wasi_snapshot_preview1")?;
@@ -33,7 +38,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .for_each(|name| println!("func: {}", name));
 
     // register wasm module
-    let wasm_file = "/Users/sam/workspace/rust/quark-demo/target/wasm32-wasi/release/wasm_lib.wasm";
     let vm = vm.register_module_from_file("extern", wasm_file)?;
 
     vm.run_func(Some("extern"), "hello", params!())?;
