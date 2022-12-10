@@ -65,5 +65,14 @@ The steps of building and runing this example.
   If the command runs successfully, then the following message is printed out on the screen:
 
   ```bash
-  fib(5) = 8
+  args: ["target/debug/run-wasm-lib", "./target/wasm32-wasi/release/wasm_lib.wasm"]
+  func: fd_write
+  [2022-12-10 12:26:51.504] [error] instantiation failed: unknown import, Code: 0x62
+  [2022-12-10 12:26:51.504] [error]     When linking module: "wasi_snapshot_preview1" , function name: "environ_get"
+  [2022-12-10 12:26:51.504] [error]     At AST node: import description
+  [2022-12-10 12:26:51.504] [error]     At AST node: import section
+  [2022-12-10 12:26:51.504] [error]     At AST node: module
+  Error: Core(Instantiation(UnknownImport))
   ```
+
+  As `run-wasm-lib` program only defines a host function for wasi `fd_write` for `wasi_snapshot_preview1` wasi module, you still have to provide the implementations for other wasi functions, for example, as shown in the error messages above, the `environ_get` function is not implemented, you need to define a host function for it.
