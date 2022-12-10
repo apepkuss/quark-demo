@@ -18,7 +18,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let wasm_file = &args[1];
 
     let import = ImportObjectBuilder::new()
-        .with_func::<(), ()>("fd_write", my_fd_write)?
+        .with_func::<(i32, i32, i32, i32), i32>("fd_write", my_fd_write)?
         .build("wasi_snapshot_preview1")?;
 
     // create a vm
