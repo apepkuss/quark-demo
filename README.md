@@ -88,5 +88,5 @@ The steps of building and runing this example.
 
   ```bash
   args[0]: Earth
-  args[1]: Moonargs[1]: Moon
+  args[1]: Moon
   ```
