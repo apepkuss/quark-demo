@@ -76,3 +76,17 @@ The steps of building and runing this example.
   ```
 
   As `run-wasm-lib` program only defines a host function for wasi `fd_write` for `wasi_snapshot_preview1` wasi module, you still have to provide the implementations for other wasi functions, for example, as shown in the error messages above, the `environ_get` function is not implemented, you need to define a host function for it.
+
+- Build and run `manipulate_string`
+  
+  ```bash
+  // in quark-demo
+  cargo run -p manipulate_string
+  ```
+
+  If the command runs successfully, then the following message is printed out on the screen:
+
+  ```bash
+  args[0]: Earth
+  args[1]: Moonargs[1]: Moon
+  ```
